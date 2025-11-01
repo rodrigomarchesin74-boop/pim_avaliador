@@ -123,7 +123,7 @@ def gerar_parecer_resumido(dados):
         
         detalhes.append(dimensao_texto)
     
-    parecer_completo = texto_base + " ".join(detalhes)
+    parecer_completo = texto_base + " ".join(detalhes) + " Parte Escrita: Nota 0.0/7.0 (exemplo). Parte Oral:"
     return parecer_completo
 
 def gerar_recomendacoes(notas_tabela, avaliacoes):
