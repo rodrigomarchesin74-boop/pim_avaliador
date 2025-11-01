@@ -529,20 +529,26 @@ def main():
             }
             
             nome_arquivo = f"PIM_{turma}_{empresa.replace(' ', '_')}.pdf"
-            caminho_completo = os.path.join(pasta_saida, nome_arquivo)
+            caminho_temp = f"/tmp/{nome_arquivo}"
             
             try:
-                Path(pasta_saida).mkdir(parents=True, exist_ok=True)
-                gerar_pdf_relatorio(dados_pdf, caminho_completo)
+                gerar_pdf_relatorio(dados_pdf, caminho_temp)
+                
+                with open(caminho_temp, "rb") as f:
+                    pdf_bytes = f.read()
                 
                 st.success(f"✅ PDF gerado com sucesso!")
-                st.success(f"📍 Salvo em: `{caminho_completo}`")
                 
-                webbrowser.open(f"file:///{caminho_completo}")
+                st.download_button(
+                    label="📥 Baixar PDF",
+                    data=pdf_bytes,
+                    file_name=nome_arquivo,
+                    mime="application/pdf",
+                    use_container_width=True
+                )
                 
             except Exception as e:
                 st.error(f"❌ Erro ao gerar PDF: {str(e)}")
-                st.error("Verifique se o caminho da pasta existe e se você tem permissão de escrita")
 
 
 if __name__ == "__main__":
