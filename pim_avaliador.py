@@ -359,12 +359,6 @@ def main():
             st.rerun()
         
         st.divider()
-        st.subheader("📁 Salvar Resultado")
-        pasta_saida = st.text_input(
-            "Caminho para salvar PDF",
-            value=str(Path.home() / "Desktop"),
-            help="Caminho da pasta onde o PDF será salvo"
-        )
     
     tab1, tab2 = st.tabs(["📝 Avaliação", "📊 Resumo"])
     
