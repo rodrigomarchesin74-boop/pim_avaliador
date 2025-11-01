@@ -123,7 +123,7 @@ def gerar_parecer_resumido(dados):
         
         detalhes.append(dimensao_texto)
     
-    parecer_completo = texto_base + " ".join(detalhes) + " Parte Escrita: Nota 0.0/7.0 (exemplo). Parte Oral:"
+    parecer_completo = texto_base + " ".join(detalhes)
     return parecer_completo
 
 def gerar_recomendacoes(notas_tabela, avaliacoes):
@@ -336,14 +336,13 @@ def main():
         cursos = ["Gestão Financeira", "Gestão RH", "Logística", "Marketing"]
         turmas = ["GF1P13", "GF2P13", "GH1P13", "GH2P13", "TL1P13", "TL2P13", "GM1P13", "GM2P13"]
         empresas = ["Alpargatas", "Amazon", "Ambev", "Apple", "Azul Linhas Aéreas", "Bauducco", "Bradesco", "Carrefour", "Cimed", "Cinemark", "Drogasil", "GPA", "Grupo Moas", "Itapemirim", "Jahu Autopeças", "JBS", "M Dias Branco", "Mcdonalds", "Mercado Livre", "Natura", "Nike", "Panobianco Academia", "Petrobrás", "Quantum Soluções", "Seara", "Segurpro"]
-        pims = ["I", "II", "III", "IV"]
 
-        professor = st.text_input("Professor", value="")
         curso = st.selectbox("Curso", cursos, index=0)
         turma = st.selectbox("Turma", turmas, index=0)
-        pim = st.selectbox("PIM", pims, index=0)
-        grupo = st.text_input("Grupo", value="", max_chars=5)
+        professor = st.text_input("Professor", value="")
+        pim = st.text_input("PIM", value="")
         empresa = st.selectbox("Organização/Empresa", empresas, index=0)
+        grupo = st.text_input("Grupo", value="", max_chars=5)
         data_avaliacao = st.date_input("Data da Avaliação")
         
         st.divider()
@@ -535,20 +534,26 @@ def main():
             }
             
             nome_arquivo = f"PIM_{turma}_{empresa.replace(' ', '_')}.pdf"
-            caminho_completo = os.path.join(pasta_saida, nome_arquivo)
+            caminho_temp = f"/tmp/{nome_arquivo}"
             
             try:
-                Path(pasta_saida).mkdir(parents=True, exist_ok=True)
-                gerar_pdf_relatorio(dados_pdf, caminho_completo)
+                gerar_pdf_relatorio(dados_pdf, caminho_temp)
+                
+                with open(caminho_temp, "rb") as f:
+                    pdf_bytes = f.read()
                 
                 st.success(f"✅ PDF gerado com sucesso!")
-                st.success(f"📍 Salvo em: `{caminho_completo}`")
                 
-                webbrowser.open(f"file:///{caminho_completo}")
+                st.download_button(
+                    label="📥 Baixar PDF",
+                    data=pdf_bytes,
+                    file_name=nome_arquivo,
+                    mime="application/pdf",
+                    use_container_width=True
+                )
                 
             except Exception as e:
                 st.error(f"❌ Erro ao gerar PDF: {str(e)}")
-                st.error("Verifique se o caminho da pasta existe e se você tem permissão de escrita")
 
 
 if __name__ == "__main__":
