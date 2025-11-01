@@ -357,6 +357,8 @@ def main():
             import time
             time.sleep(1)
             st.rerun()
+        
+        st.divider()
     
     tab1, tab2 = st.tabs(["📝 Avaliação", "📊 Resumo"])
     
