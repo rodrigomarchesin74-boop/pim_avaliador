@@ -336,13 +336,14 @@ def main():
         cursos = ["Gestão Financeira", "Gestão RH", "Logística", "Marketing"]
         turmas = ["GF1P13", "GF2P13", "GH1P13", "GH2P13", "TL1P13", "TL2P13", "GM1P13", "GM2P13"]
         empresas = ["Alpargatas", "Amazon", "Ambev", "Apple", "Azul Linhas Aéreas", "Bauducco", "Bradesco", "Carrefour", "Cimed", "Cinemark", "Drogasil", "GPA", "Grupo Moas", "Itapemirim", "Jahu Autopeças", "JBS", "M Dias Branco", "Mcdonalds", "Mercado Livre", "Natura", "Nike", "Panobianco Academia", "Petrobrás", "Quantum Soluções", "Seara", "Segurpro"]
+        pims = ["I", "II", "III", "IV"]
 
+        professor = st.text_input("Professor", value="")
         curso = st.selectbox("Curso", cursos, index=0)
         turma = st.selectbox("Turma", turmas, index=0)
-        professor = st.text_input("Professor", value="")
-        pim = st.text_input("PIM", value="")
-        empresa = st.selectbox("Organização/Empresa", empresas, index=0)
+        pim = st.selectbox("PIM", pims, index=0)
         grupo = st.text_input("Grupo", value="", max_chars=5)
+        empresa = st.selectbox("Organização/Empresa", empresas, index=0)
         data_avaliacao = st.date_input("Data da Avaliação")
         
         st.divider()
