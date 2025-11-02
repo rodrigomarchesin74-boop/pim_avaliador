@@ -3,6 +3,7 @@ import pandas as pd
 import os
 from pathlib import Path
 import webbrowser
+from io import BytesIO
 from reportlab.lib.pagesizes import A4
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -75,6 +76,33 @@ DIMENSOES_TITULOS = {
     "Referências e Citações": "REFERÊNCIAS E CITAÇÕES"
 }
 
+RECOMENDACOES_GERAIS = [
+    "Revisar estrutura do trabalho conforme normas ABNT",
+    "Corrigir erros gramaticais e melhorar clareza da linguagem",
+    "Melhorar apresentação do contexto e objetivos do trabalho",
+    "Detalhar melhor a metodologia e estrutura adotadas",
+    "Aprofundar a integração entre teoria e prática",
+    "Incluir mais dados, gráficos e exemplos concretos",
+    "Estruturar melhor a análise e discussão do problema",
+    "Apresentar mais evidências e dados que sustentem a análise",
+    "Elaborar conclusões mais consistentes e bem fundamentadas",
+    "Propor encaminhamentos práticos e viáveis",
+    "Padronizar todas as referências conforme norma ABNT",
+    "Revisar citações e eliminar fontes inadequadas",
+    "Melhorar diagramação e formatação visual do documento",
+    "Expandir discussão dos resultados encontrados",
+    "Incluir mais referências acadêmicas e científicas",
+    "Detalhar melhor o problema identificado",
+    "Apresentar soluções mais inovadoras e criativas",
+    "Melhorar a conexão entre introdução, desenvolvimento e conclusão",
+    "Incluir análise crítica mais profunda dos dados",
+    "Revisar coesão e coerência do texto",
+    "Detalhar melhor a empresa/organização estudada",
+    "Integrar melhor as disciplinas do curso no trabalho",
+    "Incluir mais informações sobre impacto e resultados",
+    "Melhorar apresentação e organização das tabelas e figuras"
+]
+
 def calcular_notas(notas_tabela):
     nota_objetiva = sum(notas_tabela.values())
     nota_ponderada = nota_objetiva * 0.70
@@ -123,7 +151,15 @@ def gerar_parecer_resumido(dados):
         
         detalhes.append(dimensao_texto)
     
-    parecer_completo = texto_base + " ".join(detalhes) + " Parte Escrita: Nota 0.0/7.0 (exemplo). Parte Oral:"
+    # Calcular nota ponderada da parte escrita
+    nota_objetiva = sum(dados.get('notas_tabela', {}).values())
+    nota_ponderada_escrita = nota_objetiva * 0.70
+    
+    # Obter notas da parte oral
+    parte_oral = dados.get('parte_oral', 0.0)
+    justificativa_oral = dados.get('justificativa_oral', 'Grupo não realizou apresentação')
+    
+    parecer_completo = texto_base + " ".join(detalhes) + f" Parte Escrita: Nota {nota_ponderada_escrita:.1f}/7.0. Parte Oral: Nota {parte_oral:.1f}/3.0 ({justificativa_oral})."
     return parecer_completo
 
 def gerar_recomendacoes(notas_tabela, avaliacoes):
@@ -276,17 +312,8 @@ def gerar_pdf_relatorio(dados, caminho_saida):
         story.append(Spacer(1, 0.04*inch))
         num_dim += 1
     
-    # ========== SEÇÃO III - RECOMENDAÇÕES ==========
-    story.append(Paragraph("III. Recomendações Gerais para Aprimoramento", section_style))
-    story.append(Spacer(1, 0.03*inch))
-    
-    recomendacoes = gerar_recomendacoes(dados['notas_tabela'], dados['avaliacoes'])
-    recomendacoes_html = '<br/>'.join([f"• {rec}" for rec in recomendacoes])
-    story.append(Paragraph(recomendacoes_html, normal_style))
-    story.append(Spacer(1, 0.08*inch))
-    
-    # ========== SEÇÃO IV - TABELA DE AVALIAÇÃO ==========
-    story.append(Paragraph("IV. Tabela de Avaliação", section_style))
+    # ========== SEÇÃO III - TABELA DE AVALIAÇÃO ==========
+    story.append(Paragraph("III. Tabela de Avaliação", section_style))
     
     table_data = [["Dimensão Avaliada", "Nota Máxima", "Nota Atribuída"]]
     
@@ -314,6 +341,25 @@ def gerar_pdf_relatorio(dados, caminho_saida):
     story.append(table_avaliacao)
     story.append(Spacer(1, 0.08*inch))
     
+    # ========== SEÇÃO IV - RECOMENDAÇÕES GERAIS ==========
+    recomendacoes = dados.get('recomendacoes_selecionadas', [])
+    comentarios_adicionais = dados.get('comentarios_adicionais', '').strip()
+    
+    if recomendacoes or comentarios_adicionais:
+        story.append(Paragraph("IV. Recomendações Gerais para Aprimoramento", section_style))
+        
+        if recomendacoes:
+            for i, rec in enumerate(recomendacoes, 1):
+                story.append(Paragraph(f"• {rec}", normal_style))
+        
+        if comentarios_adicionais:
+            story.append(Spacer(1, 0.03*inch))
+            story.append(Paragraph("<b>Notas Adicionais:</b>", normal_style))
+            comentarios_formatado = comentarios_adicionais.replace('\n', '<br/>')
+            story.append(Paragraph(f"{comentarios_formatado}", normal_style))
+        
+        story.append(Spacer(1, 0.08*inch))
+    
     # ========== SEÇÃO V - CÁLCULO DE NOTAS ==========
     story.append(Paragraph("V. Nota Sugerida", section_style))
     
@@ -334,16 +380,14 @@ def main():
         
         # Listas de opções
         cursos = ["Gestão Financeira", "Gestão RH", "Logística", "Marketing"]
-        turmas = ["GF1P13", "GF2P13", "GH1P13", "GH2P13", "TL1P13", "TL2P13", "GM1P13", "GM2P13"]
-        empresas = ["Alpargatas", "Amazon", "Ambev", "Apple", "Azul Linhas Aéreas", "Bauducco", "Bradesco", "Carrefour", "Cimed", "Cinemark", "Drogasil", "GPA", "Grupo Moas", "Itapemirim", "Jahu Autopeças", "JBS", "M Dias Branco", "Mcdonalds", "Mercado Livre", "Natura", "Nike", "Panobianco Academia", "Petrobrás", "Quantum Soluções", "Seara", "Segurpro"]
         pims = ["I", "II", "III", "IV"]
 
         professor = st.text_input("Professor", value="")
         curso = st.selectbox("Curso", cursos, index=0)
-        turma = st.selectbox("Turma", turmas, index=0)
+        turma = st.text_input("Turma (insira o código)", value="")
         pim = st.selectbox("PIM", pims, index=0)
-        grupo = st.text_input("Grupo", value="", max_chars=5)
-        empresa = st.selectbox("Organização/Empresa", empresas, index=0)
+        grupo = st.text_input("Grupo Nº", value="", max_chars=5)
+        empresa = st.text_input("Organização/Empresa", value="")
         data_avaliacao = st.date_input("Data da Avaliação")
         
         st.divider()
@@ -351,6 +395,10 @@ def main():
             st.session_state.avaliacoes = {dim: {'status': 'Não', 'nota': 0, 'comentario': '', 'observacoes': []} for dim in DIMENSOES.keys()}
             st.session_state.parecer_final = ""
             st.session_state.notas_tabela = {dim: 0 for dim in DIMENSOES.keys()}
+            st.session_state.recomendacoes_selecionadas = []
+            st.session_state.comentarios_adicionais = ""
+            st.session_state.parte_oral = 0.0
+            st.session_state.justificativa_oral = "Grupo não realizou apresentação"
             st.session_state.reset_counter += 1
             
             st.success("✨ Todos os campos foram zerados! Pronto para o próximo grupo.")
@@ -361,11 +409,14 @@ def main():
         
         st.divider()
     
-    tab1, tab2 = st.tabs(["📝 Avaliação", "📊 Resumo"])
+    tab1, tab_rec, tab2 = st.tabs(["📝 Avaliação", "💡 Recomendações", "📊 Resumo"])
     
     if 'avaliacoes' not in st.session_state:
         st.session_state.avaliacoes = {dim: {'status': 'Não', 'nota': 0, 'comentario': '', 'observacoes': []} for dim in DIMENSOES.keys()}
         st.session_state.notas_tabela = {dim: 0 for dim in DIMENSOES.keys()}
+        st.session_state.recomendacoes_selecionadas = []
+        st.session_state.parte_oral = 0.0
+        st.session_state.justificativa_oral = "Grupo não realizou apresentação"
         st.session_state.reset_counter = 0
     
     with tab1:
@@ -424,7 +475,68 @@ def main():
                 
                 st.divider()
         
-        st.info("💡 Clique na aba **📊 Resumo** acima para visualizar as notas e gerar o PDF")
+        st.subheader("📝 Parecer")
+        
+        # Calcular nota ponderada da parte escrita
+        nota_objetiva = sum(st.session_state.notas_tabela.values())
+        nota_ponderada_escrita = nota_objetiva * 0.70
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric("Parte Escrita (Ponderada)", f"{nota_ponderada_escrita:.1f}/7.0")
+        
+        st.divider()
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            parte_oral = st.number_input(
+                "Parte Oral",
+                min_value=0.0,
+                max_value=3.0,
+                step=0.1,
+                key=f"parte_oral_{st.session_state.reset_counter}"
+            )
+            st.session_state.parte_oral = parte_oral
+        
+        with col2:
+            justificativa = st.selectbox(
+                "Justificativa",
+                ["Grupo não realizou apresentação", "Grupo aguardando para realizar apresentação", "Apresentação realizada"],
+                key=f"justificativa_oral_{st.session_state.reset_counter}"
+            )
+            st.session_state.justificativa_oral = justificativa
+        
+        st.info("💡 Clique na aba **💡 Recomendações** para instruções adicionais")
+    
+    with tab_rec:
+        st.header("💡 Recomendações Gerais para Aprimoramento")
+        st.write("Selecione as recomendações aplicáveis ao trabalho avaliado:")
+        
+        st.divider()
+        
+        for i, recomendacao in enumerate(RECOMENDACOES_GERAIS):
+            if st.checkbox(recomendacao, key=f"rec_{i}_{st.session_state.reset_counter}"):
+                if recomendacao not in st.session_state.recomendacoes_selecionadas:
+                    st.session_state.recomendacoes_selecionadas.append(recomendacao)
+            else:
+                if recomendacao in st.session_state.recomendacoes_selecionadas:
+                    st.session_state.recomendacoes_selecionadas.remove(recomendacao)
+        
+        st.divider()
+        st.info(f"💡 {len(st.session_state.recomendacoes_selecionadas)} recomendação(ões) selecionada(s)")
+        
+        st.divider()
+        st.subheader("📝 Comentários Adicionais")
+        st.write("Adicione comentários adicionais ou novas sugestões para o grupo:")
+        
+        comentarios_adicionais = st.text_area(
+            "Comentários do Professor",
+            value=st.session_state.get('comentarios_adicionais', ''),
+            height=150,
+            placeholder="Escreva seus comentários, observações ou sugestões adicionais aqui...",
+            key=f"comentarios_adicionais_{st.session_state.reset_counter}"
+        )
+        st.session_state.comentarios_adicionais = comentarios_adicionais
     
     with tab2:
         st.header("📊 Resumo da Avaliação")
@@ -510,7 +622,9 @@ def main():
         
         parecer_resumido = gerar_parecer_resumido({
             'avaliacoes': st.session_state.avaliacoes,
-            'notas_tabela': st.session_state.notas_tabela
+            'notas_tabela': st.session_state.notas_tabela,
+            'parte_oral': st.session_state.parte_oral,
+            'justificativa_oral': st.session_state.justificativa_oral
         })
         st.info(parecer_resumido)
         
@@ -525,17 +639,21 @@ def main():
                 'professor': professor,
                 'data_avaliacao': data_avaliacao.strftime("%d/%m/%Y"),
                 'avaliacoes': st.session_state.avaliacoes,
-                'notas_tabela': st.session_state.notas_tabela
+                'notas_tabela': st.session_state.notas_tabela,
+                'recomendacoes_selecionadas': st.session_state.recomendacoes_selecionadas,
+                'comentarios_adicionais': st.session_state.get('comentarios_adicionais', ''),
+                'parte_oral': st.session_state.parte_oral,
+                'justificativa_oral': st.session_state.justificativa_oral
             }
             
             nome_arquivo = f"PIM_{turma}_{empresa.replace(' ', '_')}.pdf"
-            caminho_temp = f"/tmp/{nome_arquivo}"
             
             try:
-                gerar_pdf_relatorio(dados_pdf, caminho_temp)
-                
-                with open(caminho_temp, "rb") as f:
-                    pdf_bytes = f.read()
+                # Criar PDF em memória
+                pdf_buffer = BytesIO()
+                gerar_pdf_relatorio(dados_pdf, pdf_buffer)
+                pdf_buffer.seek(0)
+                pdf_bytes = pdf_buffer.getvalue()
                 
                 st.success(f"✅ PDF gerado com sucesso!")
                 
@@ -549,6 +667,8 @@ def main():
                 
             except Exception as e:
                 st.error(f"❌ Erro ao gerar PDF: {str(e)}")
+                import traceback
+                st.error(traceback.format_exc())
 
 
 if __name__ == "__main__":
