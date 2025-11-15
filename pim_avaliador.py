@@ -15,46 +15,83 @@ st.set_page_config(page_title="Avaliador PIM", layout="wide", initial_sidebar_st
 
 SUGESTOES_BANCO = {
     "Apresentação Geral": [
-        "Faltam diversos elementos obrigatórios conforme normas ABNT",
-        "Diagramação inadequada e desorganizada",
-        "Linguagem com erros gramaticais e informalidade",
+        "Seção não apresentada no relatório",
+        "A capa não apresenta o nome da instituição, curso, nome dos alunos com RA, título, subtítulo, local e ano de forma clara e organizada",
+        "As margens não estão configuradas em 3 cm (esquerda e superior) e 2 cm (direita e inferior)",
+        "O espaçamento entre linhas não é de 1,5 cm no corpo do texto",
+        "As páginas não estão corretamente numeradas sequencialmente em algarismos arábicos no canto superior direito",
+        "O sumário não apresenta todas as seções do relatório em ordem de ocorrência",
+        "As tabelas e ilustrações não possuem título, fonte de referência indicada",
+        "O texto contém erros ortográficos, de acentuação ou de grafia de palavras",
+        "O texto apresenta erros de concordância verbal ou nominal",
         "Estrutura conforme normas, mas com pequenos ajustes necessários",
-        "Excelente apresentação e conformidade com normas"
+        "Apresentação adequada e em conformidade com normas"
     ],
     "Introdução": [
-        "Falta contexto claro sobre a empresa e o tema",
-        "Objetivos não estão explicitamente definidos",
-        "Metodologia e estrutura do trabalho não mencionadas",
-        "Introdução adequada, mas carece de maior profundidade",
-        "Excelente introdução com contexto, objetivos e metodologia bem definidos"
+        "Seção não apresentada no relatório",
+        "A organização escolhida não é apresentada com informações sobre seu ramo de negócio, porte, localização e contexto geral",
+        "O relatório não estabelece conexão clara entre o objeto de pesquisa e as disciplinas estudadas no semestre",
+        "A introdução não explica por que o PIM é importante para a formação acadêmica dos alunos",
+        "O objetivo principal do relatório não está claramente definido",
+        "A pesquisa não é justificada quanto à sua importância ou contribuição para a prática profissional",
+        "A introdução não descreve a abordagem metodológica utilizada",
+        "A introdução não apresenta a estrutura geral do relatório (visão dos capítulos subsequentes)",
+        "Introdução adequada com contexto, objetivo e metodologia bem definidos"
     ],
     "Desenvolvimento": [
+        "Seção não apresentada no relatório",        
         "Abrangência insuficiente das disciplinas propostas",
         "Fraca integração entre teoria e prática",
         "Faltam dados, gráficos e visualizações para suportar análise",
         "Desenvolvimento parcial, com bom conteúdo mas faltam aplicações práticas",
-        "Excelente desenvolvimento com integração teórica-prática bem executada"
+        "Abordagem prática bem elaborada, porém com conteúdo teórico pouco fundamentado",
+        "Desenvolvimento adequado com integração teórica-prática bem executada"
     ],
-    "Discussão": [
-        "Sem aplicação das etapas metodológicas indicadas",
-        "Ausência de dados e análise crítica do problema",
-        "Contextualização superficial das causas do problema",
-        "Discussão presente, mas com análise crítica limitada",
-        "Excelente discussão com identificação clara do problema e análise profunda"
-    ],
+    "Discussão": {
+        "Problema (para PIM I ou PIM II)": [
+            "Seção não apresentada no relatório",        
+            "O problema principal não está claramente identificado",
+            "Os fatores internos e externos que contribuem para o problema não foram descritos",
+            "A forma como o problema afeta diferentes áreas da organização não foi demonstrada",
+            "As causas-raízes do problema não apresentaram fundamentação adequada",
+            "Dados que suportam ou justificam a existência do problema não foram apresentados",
+            "Os sintomas não apresentam conexão clara com a realidade observada na organização",
+            "As possíveis consequências caso o problema não seja resolvido não foram apresentadas",
+            "O problema não está adequadamente relacionado à uma das disciplinas específicas",
+            "Discussão adequada, com identificação clara do problema e suas consequências"
+        ],
+        "Solução (para PIM III ou PIM IV)": [
+            "Seção não apresentada no relatório",
+            "A solução proposta não está claramente descrita",
+            "Os objetivos a serem alcançados com a solução proposta não estão delineados",
+            "A solução proposta não está adequadamente justificada",
+            "As fases de implementação da solução (cronograma) não foi apresentada",
+            "A viabilidade da solução proposta não foi demonstrada",
+            "Os benefícios esperados com a implementação da solução não estão claramente descritos",
+            "Os indicadores de sucesso - para verificação do alcance da solução - não foram apresentados",
+            "Os aspectos que podem limitar a implementação da solução não foram apresentados",
+            "A solução não está adequadamente relacionada à uma das disciplinas específicas",
+            "A solução proposta está adequadamente fundamentada"
+        ]
+    },
     "Conclusão": [
-        "Seção não foi desenvolvida",
-        "Conclusão genérica sem síntese dos achados",
-        "Faltam encaminhamentos concretos e contribuições práticas",
-        "Conclusão adequada, mas carece de maior conexão com objetivos",
-        "Excelente conclusão com síntese clara e contribuições bem articuladas"
+        "Seção não apresentada no relatório",
+        "Os pontos principais discutidos no desenvolvimento não estão sintetizados",
+        "Os desdobramentos da discussão não foram retomados",
+        "As limitações encontradas durante a pesquisa não foram mencionadas",
+        "A principal contribuição do relatório para a área de estudo ou para a organização não está claramente apresentada",
+        "A conclusão não deixa clara a mensagem final que o relatório deseja transmitir",
+        "Conclusão adequada, com síntese clara e contribuições bem articuladas"
     ],
     "Referências e Citações": [
-        "Problemas significativos de padronização e duplicidade",
-        "Citações incorretas ou não estão em norma ABNT",
-        "Faltam referências ou há excesso de fontes não acadêmicas",
+        "Seção não apresentada no relatório",
+        "Fontes citadas no corpo do texto constam parcialmente na lista de Referências",
+        "As Referências não seguem o formato ABNT",
+        "Citações diretas apresentaram formatação inconsistente conforme ABNT",
+        "Citações indiretas apresentaram formatação inconsistente conforme ABNT",
+        "O texto apresenta paráfrases muito próximas de fontes bibliográficas sem a devida atribuição de autoria",
         "Referências adequadas, mas com pequenos problemas de formatação",
-        "Excelente padronização das referências e citações conforme ABNT"
+        "Padronização adequada das referências e citações, conforme ABNT"
     ]
 }
 
@@ -117,7 +154,7 @@ def gerar_parecer_resumido(dados):
         "e adequação de conteúdos aos tópicos propostos pelo roteiro do Projeto Integrado Multidisciplinar. "
         "Desse modo, a avaliação do PIM (parte escrita) serve ao propósito de contemplar a análise das seguintes "
         "dimensões e critérios de ponderação: cuidados na elaboração da apresentação geral do texto (10%), "
-        "introdução (10%), desenvolvimento (30%), discussão—identificação e descrição do problema (30%), "
+        "introdução (10%), desenvolvimento (30%), discussão (30%), "
         "conclusão pertinente aos aspectos estudados (10%) e atenção aos procedimentos de citações e referências (10%). "
         "Para tanto, segue a distribuição dos pontos com o respectivo desempenho discente para cada uma das dimensões avaliadas: "
     )
@@ -129,17 +166,19 @@ def gerar_parecer_resumido(dados):
     for dimensao, pesos in DIMENSOES.items():
         avaliacao = avaliacoes.get(dimensao, {})
         nota = avaliacao.get('nota', 0)
-        status = avaliacao.get('status', 'Não')
         observacoes = avaliacao.get('observacoes', [])
         comentario = avaliacao.get('comentario', '')
         
         # Montar texto para cada dimensão
-        dimensao_texto = f"{dimensao}: Nota {nota:.1f}/{pesos:.1f} ({status})"
+        dimensao_texto = f"{dimensao}: Nota {nota:.1f}/{pesos:.1f}"
         
         # Coletar observações e comentários
         detalhes_obs = []
         if observacoes:
-            detalhes_obs.extend(observacoes)
+            # Remover tags [Problema] e [Solução]
+            for obs in observacoes:
+                obs_limpa = obs.replace("[Problema] ", "").replace("[Solução] ", "")
+                detalhes_obs.append(obs_limpa)
         if comentario:
             detalhes_obs.append(comentario)
         
@@ -159,7 +198,10 @@ def gerar_parecer_resumido(dados):
     parte_oral = dados.get('parte_oral', 0.0)
     justificativa_oral = dados.get('justificativa_oral', 'Grupo não realizou apresentação')
     
-    parecer_completo = texto_base + " ".join(detalhes) + f" Parte Escrita: Nota {nota_ponderada_escrita:.1f}/7.0. Parte Oral: Nota {parte_oral:.1f}/3.0 ({justificativa_oral})."
+    # Calcular nota total
+    nota_total = nota_ponderada_escrita + parte_oral
+    
+    parecer_completo = texto_base + " ".join(detalhes) + f" Parte Escrita: Nota {nota_ponderada_escrita:.1f}/7.0. Parte Oral: Nota {parte_oral:.1f}/3.0 ({justificativa_oral}). Nota Total: {nota_total:.2f}/10.0."
     return parecer_completo
 
 def gerar_recomendacoes(notas_tabela, avaliacoes):
@@ -263,7 +305,7 @@ def gerar_pdf_relatorio(dados, caminho_saida):
     nota_obj, nota_pond = calcular_notas(dados['notas_tabela'])
     
     # ========== CAPA ==========
-    story.append(Paragraph("RELATÓRIO DE AVALIAÇÃO PRELIMINAR DO PIM", titulo_style))
+    story.append(Paragraph("RELATÓRIO DE AVALIAÇÃO DO PIM", titulo_style))
     story.append(Spacer(1, 0.05*inch))
     
     # ========== SEÇÃO I - IDENTIFICAÇÃO ==========
@@ -271,12 +313,11 @@ def gerar_pdf_relatorio(dados, caminho_saida):
     
     ident_text = f"""
     <b>Curso:</b> {dados.get('curso', '')}<br/>
-    <b>Turma:</b> {dados.get('turma', '')}<br/>
     <b>PIM:</b> {dados.get('pim', '')}<br/>
-    <b>Grupo:</b> {dados.get('grupo', '')}<br/>
+    <b>Líder:</b> {dados.get('lider', '')}<br/>
     <b>Organização/Empresa:</b> {dados.get('empresa', '')}<br/>
     <b>Professor responsável:</b> {dados.get('professor', '')}<br/>
-    <b>Data da avaliação preliminar:</b> {dados.get('data_avaliacao', '')}
+    <b>Data da avaliação:</b> {dados.get('data_avaliacao', '')}
     """
     story.append(Paragraph(ident_text, normal_style))
     story.append(Spacer(1, 0.08*inch))
@@ -290,12 +331,8 @@ def gerar_pdf_relatorio(dados, caminho_saida):
         story.append(Paragraph(f"II.{num_dim} {titulo_dim_completo}", section_style))
         
         resposta = dados['avaliacoes'].get(chave_dim, {})
-        status = resposta.get('status', 'Não')
         observacoes = resposta.get('observacoes', [])
         comentario = resposta.get('comentario', '')
-        
-        # Adicionar Status
-        story.append(Paragraph(f"<b>Status:</b> {status}", normal_style))
         
         # Mostrar Observações
         if observacoes:
@@ -360,12 +397,31 @@ def gerar_pdf_relatorio(dados, caminho_saida):
         
         story.append(Spacer(1, 0.08*inch))
     
-    # ========== SEÇÃO V - CÁLCULO DE NOTAS ==========
-    story.append(Paragraph("V. Nota Sugerida", section_style))
+    # ========== SEÇÃO IV - PARECER RESUMIDO ==========
+    story.append(Paragraph("IV. Parecer Resumido", section_style))
+    
+    parecer_dados = {
+        'avaliacoes': dados['avaliacoes'],
+        'notas_tabela': dados['notas_tabela'],
+        'parte_oral': dados['parte_oral'],
+        'justificativa_oral': dados['justificativa_oral']
+    }
+    parecer_texto = gerar_parecer_resumido(parecer_dados)
+    story.append(Paragraph(parecer_texto, normal_style))
+    story.append(Spacer(1, 0.08*inch))
+    
+    # ========== SEÇÃO V - NOTAS ATRIBUÍDAS ==========
+    story.append(Paragraph("V. Notas Atribuídas", section_style))
+    
+    # Calcular notas para exibição
+    parte_oral = dados.get('parte_oral', 0.0)
+    nota_total = nota_pond + parte_oral
     
     notas_resumo = f"""
-    <b>Nota Objetiva:</b> {nota_obj:.1f} (nota atribuída considerando o trabalho avaliado em uma escala de 0,0 a 10,0).<br/>
-    <b>Nota Ponderada:</b> {nota_pond:.1f} (esta nota considera a avaliação escrita, que corresponde a 70% da nota total do PIM).
+    <b>Nota Objetiva:</b> {nota_obj:.1f}/10.0 (nota atribuída considerando o trabalho avaliado em uma escala de 0,0 a 10,0).<br/>
+    <b>Nota Ponderada (70%):</b> {nota_pond:.2f}/7.0 (esta nota considera a avaliação escrita, que corresponde a 70% da nota total do PIM).<br/>
+    <b>Nota Oral:</b> {parte_oral:.1f}/3.0 (nota correspondente à avaliação da apresentação oral, via seminário ou feira acadêmica).<br/>
+    <b>Nota Total:</b> {nota_total:.2f}/10.0 (nota efetivamente lançada em sistema acadêmico).
     """
     story.append(Paragraph(notas_resumo, normal_style))
     
@@ -373,26 +429,25 @@ def gerar_pdf_relatorio(dados, caminho_saida):
     doc.build(story)
 
 def main():
-    st.title("📊 CEOS - Avaliador de Relatórios PIM")
+    st.title("📊 SATA - Sistema de Avaliação de Trabalho Acadêmico")
     
     with st.sidebar:
         st.header("📋 Informações do Relatório")
         
         # Listas de opções
-        cursos = ["Gestão Financeira", "Gestão RH", "Logística", "Marketing"]
-        pims = ["I", "II", "III", "IV"]
+        cursos = ["Selecionar Curso", "Gestão Financeira", "Gestão RH", "Logística", "Marketing"]
+        pims = ["Selecionar PIM", "I", "II", "III", "IV"]
 
         professor = st.text_input("Professor", value="")
         curso = st.selectbox("Curso", cursos, index=0)
-        turma = st.text_input("Turma (insira o código)", value="")
         pim = st.selectbox("PIM", pims, index=0)
-        grupo = st.text_input("Grupo Nº", value="", max_chars=5)
         empresa = st.text_input("Organização/Empresa", value="")
+        lider = st.text_input("Líder", value="")
         data_avaliacao = st.date_input("Data da Avaliação")
         
         st.divider()
-        if st.button("🗑️ Zerar Campos", type="secondary", use_container_width=True):
-            st.session_state.avaliacoes = {dim: {'status': 'Não', 'nota': 0, 'comentario': '', 'observacoes': []} for dim in DIMENSOES.keys()}
+        if st.button("🔄 Nova Correção", type="secondary", use_container_width=True):
+            st.session_state.avaliacoes = {dim: {'nota': 0, 'comentario': '', 'observacoes': []} for dim in DIMENSOES.keys()}
             st.session_state.parecer_final = ""
             st.session_state.notas_tabela = {dim: 0 for dim in DIMENSOES.keys()}
             st.session_state.recomendacoes_selecionadas = []
@@ -409,35 +464,108 @@ def main():
         
         st.divider()
     
-    tab1, tab_rec, tab2 = st.tabs(["📝 Avaliação", "💡 Recomendações", "📊 Resumo"])
+    tab_inicio, tab_apresentacao, tab_introducao, tab_desenvolvimento, tab_discussao, tab_conclusao, tab_referencias, tab_parte_oral, tab_relatorio = st.tabs([
+        "🏠 Início",
+        "📄 Apresentação",
+        "📖 Introdução", 
+        "📚 Desenvolvimento",
+        "💬 Discussão",
+        "✅ Conclusão",
+        "📚 Referências",
+        "🎤 Parte Oral",
+        "📋 Relatório"
+    ])
     
     if 'avaliacoes' not in st.session_state:
-        st.session_state.avaliacoes = {dim: {'status': 'Não', 'nota': 0, 'comentario': '', 'observacoes': []} for dim in DIMENSOES.keys()}
+        st.session_state.avaliacoes = {dim: {'nota': 0, 'comentario': '', 'observacoes': []} for dim in DIMENSOES.keys()}
         st.session_state.notas_tabela = {dim: 0 for dim in DIMENSOES.keys()}
         st.session_state.recomendacoes_selecionadas = []
         st.session_state.parte_oral = 0.0
         st.session_state.justificativa_oral = "Grupo não realizou apresentação"
         st.session_state.reset_counter = 0
     
-    with tab1:
-        st.header("Avaliação das Dimensões")
+    # ========== ABA INÍCIO ==========
+    with tab_inicio:
+        st.markdown("""
+        ### 👋 Bem-vindo ao SATA!
         
-        for dimensao, nota_maxima in DIMENSOES.items():
-            with st.container():
-                col1, col2 = st.columns([3, 1])
+        Este sistema foi desenvolvido para facilitar e padronizar a avaliação do **Projeto Integrado Multidisciplinar (PIM)**.
+        
+        ---
+        
+        #### 📋 Como usar:
+        
+        1. **Preencha os dados na Barra Lateral** (Professor, Curso, PIM, Organização/Empresa, Líder e Data).
+        2. **Acesse cada aba** para realizar a avaliação do trabalho.
+        3. **Aba Parte Oral** - Registre a nota da apresentação.
+        4. **Aba Relatório** - Visualize o resumo completo e gere o PDF.
+        
+        ---
+        
+        #### 💡 Dicas Importantes:
+        
+        - ✅ Use o botão **🔄 Nova Correção** na Barra Lateral para limpar os campos e avaliar outro grupo.
+        - 💬 Na aba **Discussão**, escolha entre **Problema (PIM I/II)** ou **Solução (PIM III/IV)** - não é possível preencher ambos.
+        - 📄 O **PDF** é gerado automaticamente com todas as informações.
+        - 📊 As notas são calculadas automaticamente (Escrita 70% + Oral 30%).
+        
+        ---
+        
+        **Dúvidas?** Encaminhe e-mail para rodrigo.marchesin@outlook.com
+        """)
+    
+    # Dicionário com descrições de cada dimensão
+    descricoes_dimensoes = {
+        "Apresentação Geral": "Conformidade com normas ABNT, diagramação e qualidade da apresentação visual.",
+        "Introdução": "Contexto, objetivos e metodologia do trabalho.",
+        "Desenvolvimento": "Integração entre teoria e prática, com dados e visualizações das disciplinas correntes no semestre.",
+        "Discussão": "Análise e identificação do problema ou da proposição de solução.",
+        "Conclusão": "Síntese dos achados e contribuições do trabalho.",
+        "Referências e Citações": "Padronização das referências conforme normas ABNT."
+    }
+    
+    # Função para renderizar uma dimensão
+    def renderizar_dimensao(tab, dimensao, nota_maxima):
+        with tab:
+            st.markdown(
+                f"<h1 style='color: #1f77b4; font-size: 28px;'>✍️ {dimensao}</h1>",
+                unsafe_allow_html=True
+            )
+            # Adicionar subtítulo explicativo
+            st.caption(f"📋 {descricoes_dimensoes.get(dimensao, '')}")
+            st.divider()
+            
+            # Verificar se é Discussão (com grupos Problema/Solução)
+            if dimensao == "Discussão" and isinstance(SUGESTOES_BANCO.get(dimensao), dict):
+                st.write("**Escolha qual aspecto será abordado:**")
                 
-                with col1:
-                    st.subheader(f"{dimensao} (Nota máxima: {nota_maxima})")
-                with col2:
-                    status = st.radio(
-                        "Status",
-                        options=["Sim", "Parcial", "Não"],
-                        key=f"status_{dimensao}_{st.session_state.reset_counter}",
-                        horizontal=True,
-                        label_visibility="collapsed"
-                    )
-                    st.session_state.avaliacoes[dimensao]['status'] = status
+                # Radio buttons para escolher entre Problema ou Solução
+                tipo_discussao = st.radio(
+                    "Tipo de Discussão",
+                    options=["Problema (PIM I ou II)", "Solução (PIM III ou IV)"],
+                    horizontal=True,
+                    key=f"tipo_discussao_{st.session_state.reset_counter}",
+                    label_visibility="collapsed"
+                )
                 
+                st.divider()
+                st.write("**Selecione as sugestões aplicáveis:**")
+                
+                selecionadas = []
+                
+                # Renderizar apenas o grupo escolhido
+                if tipo_discussao == "Problema (PIM I ou II)":
+                    st.write("🔴 **Problema:**")
+                    for i, sugestao in enumerate(SUGESTOES_BANCO[dimensao]["Problema (para PIM I ou PIM II)"]):
+                        if st.checkbox(sugestao, key=f"sug_{dimensao}_problema_{i}_{st.session_state.reset_counter}"):
+                            selecionadas.append(f"[Problema] {sugestao}")
+                else:
+                    st.write("🟢 **Solução:**")
+                    for i, sugestao in enumerate(SUGESTOES_BANCO[dimensao]["Solução (para PIM III ou PIM IV)"]):
+                        if st.checkbox(sugestao, key=f"sug_{dimensao}_solucao_{i}_{st.session_state.reset_counter}"):
+                            selecionadas.append(f"[Solução] {sugestao}")
+            else:
+                # Renderização normal para outras dimensões
                 sugestoes = SUGESTOES_BANCO.get(dimensao, [])
                 st.write("**Selecione as sugestões aplicáveis:**")
                 
@@ -445,37 +573,50 @@ def main():
                 for i, sugestao in enumerate(sugestoes):
                     if st.checkbox(sugestao, key=f"sug_{dimensao}_{i}_{st.session_state.reset_counter}"):
                         selecionadas.append(sugestao)
-                
-                comentario_custom = st.text_area(
-                    "Ou escreva um comentário customizado",
-                    value="",
-                    height=60,
-                    key=f"comentario_{dimensao}_{st.session_state.reset_counter}",
-                    placeholder="Digite aqui comentários adicionais..."
+            
+            st.divider()
+            comentario_custom = st.text_area(
+                "Ou escreva um comentário customizado",
+                value="",
+                height=60,
+                key=f"comentario_{dimensao}_{st.session_state.reset_counter}",
+                placeholder="Digite aqui comentários adicionais..."
+            )
+            
+            # Salvar separado: observações e comentários do professor
+            st.session_state.avaliacoes[dimensao]['observacoes'] = selecionadas
+            st.session_state.avaliacoes[dimensao]['comentario'] = comentario_custom
+            
+            st.divider()
+            col1, col2 = st.columns(2)
+            with col1:
+                nota = st.number_input(
+                    f"Nota para {dimensao}",
+                    min_value=0.0,
+                    max_value=nota_maxima,
+                    step=0.1,
+                    key=f"nota_{dimensao}_{st.session_state.reset_counter}"
                 )
-                
-                # Salvar separado: observações e comentários do professor
-                st.session_state.avaliacoes[dimensao]['observacoes'] = selecionadas
-                st.session_state.avaliacoes[dimensao]['comentario'] = comentario_custom
-                
-                col1, col2 = st.columns(2)
-                with col1:
-                    nota = st.number_input(
-                        f"Nota para {dimensao}",
-                        min_value=0.0,
-                        max_value=nota_maxima,
-                        step=0.1,
-                        key=f"nota_{dimensao}_{st.session_state.reset_counter}"
-                    )
-                    st.session_state.avaliacoes[dimensao]['nota'] = nota
-                    st.session_state.notas_tabela[dimensao] = nota
-                
-                with col2:
-                    st.metric("Nota máxima", nota_maxima)
-                
-                st.divider()
-        
-        st.subheader("📝 Parecer")
+                st.session_state.avaliacoes[dimensao]['nota'] = nota
+                st.session_state.notas_tabela[dimensao] = nota
+            
+            with col2:
+                st.metric("Nota máxima", nota_maxima)
+    
+    # Renderizar cada dimensão em sua aba
+    renderizar_dimensao(tab_apresentacao, "Apresentação Geral", DIMENSOES["Apresentação Geral"])
+    renderizar_dimensao(tab_introducao, "Introdução", DIMENSOES["Introdução"])
+    renderizar_dimensao(tab_desenvolvimento, "Desenvolvimento", DIMENSOES["Desenvolvimento"])
+    renderizar_dimensao(tab_discussao, "Discussão", DIMENSOES["Discussão"])
+    renderizar_dimensao(tab_conclusao, "Conclusão", DIMENSOES["Conclusão"])
+    renderizar_dimensao(tab_referencias, "Referências e Citações", DIMENSOES["Referências e Citações"])
+    
+    # Aba Parte Oral
+    with tab_parte_oral:
+        st.markdown(
+            "<h1 style='color: #ff6b6b; font-size: 28px;'>🎤 Parte Oral</h1>",
+            unsafe_allow_html=True
+        )
         
         # Calcular nota ponderada da parte escrita
         nota_objetiva = sum(st.session_state.notas_tabela.values())
@@ -505,47 +646,20 @@ def main():
                 key=f"justificativa_oral_{st.session_state.reset_counter}"
             )
             st.session_state.justificativa_oral = justificativa
-        
-        st.info("💡 Clique na aba **💡 Recomendações** para instruções adicionais")
     
-    with tab_rec:
-        st.header("💡 Recomendações Gerais para Aprimoramento")
-        st.write("Selecione as recomendações aplicáveis ao trabalho avaliado:")
-        
-        st.divider()
-        
-        for i, recomendacao in enumerate(RECOMENDACOES_GERAIS):
-            if st.checkbox(recomendacao, key=f"rec_{i}_{st.session_state.reset_counter}"):
-                if recomendacao not in st.session_state.recomendacoes_selecionadas:
-                    st.session_state.recomendacoes_selecionadas.append(recomendacao)
-            else:
-                if recomendacao in st.session_state.recomendacoes_selecionadas:
-                    st.session_state.recomendacoes_selecionadas.remove(recomendacao)
-        
-        st.divider()
-        st.info(f"💡 {len(st.session_state.recomendacoes_selecionadas)} recomendação(ões) selecionada(s)")
-        
-        st.divider()
-        st.subheader("📝 Comentários Adicionais")
-        st.write("Adicione comentários adicionais ou novas sugestões para o grupo:")
-        
-        comentarios_adicionais = st.text_area(
-            "Comentários do Professor",
-            value=st.session_state.get('comentarios_adicionais', ''),
-            height=150,
-            placeholder="Escreva seus comentários, observações ou sugestões adicionais aqui...",
-            key=f"comentarios_adicionais_{st.session_state.reset_counter}"
+    # Aba Relatório (com o conteúdo que era antes na aba Resumo)
+    with tab_relatorio:
+        # Título customizado com cor e ícone diferente
+        st.markdown(
+            "<h1 style='color: #2ca02c; font-size: 28px;'>📋 Relatório</h1>",
+            unsafe_allow_html=True
         )
-        st.session_state.comentarios_adicionais = comentarios_adicionais
-    
-    with tab2:
-        st.header("📊 Resumo da Avaliação")
         
         col1, col2, col3, col4 = st.columns(4)
         with col1:
             st.metric("Curso", curso)
         with col2:
-            st.metric("Turma", turma)
+            st.metric("Líder", lider)
         with col3:
             st.metric("Empresa", empresa if empresa else "N/A")
         with col4:
@@ -558,12 +672,10 @@ def main():
         resumo_data = []
         for dimensao, nota_maxima in DIMENSOES.items():
             nota_atribuida = st.session_state.notas_tabela[dimensao]
-            status = st.session_state.avaliacoes[dimensao]['status']
             resumo_data.append({
                 "Dimensão": dimensao,
                 "Nota Máxima": f"{nota_maxima:.1f}",
-                "Nota Atribuída": f"{nota_atribuida:.1f}",
-                "Status": status
+                "Nota Atribuída": f"{nota_atribuida:.1f}"
             })
         
         df_resumo = pd.DataFrame(resumo_data)
@@ -574,14 +686,17 @@ def main():
         st.subheader("Cálculo de Notas")
         
         nota_obj, nota_pond = calcular_notas(st.session_state.notas_tabela)
+        nota_total = nota_pond + st.session_state.parte_oral
         
-        col1, col2, col3 = st.columns(3)
+        col1, col2, col3, col4 = st.columns(4)
         with col1:
             st.metric("Nota Objetiva", f"{nota_obj:.1f}/10.0")
         with col2:
-            st.metric("Nota Ponderada (70%)", f"{nota_pond:.2f}")
+            st.metric("Nota Ponderada (70%)", f"{nota_pond:.2f}/7.0")
         with col3:
-            st.metric("Fórmula", "Objetiva × 0,70")
+            st.metric("Nota Oral", f"{st.session_state.parte_oral:.1f}/3.0")
+        with col4:
+            st.metric("Nota Total", f"{nota_total:.2f}/10.0", delta=None)
         
         st.divider()
         st.subheader("📋 Avaliações Realizadas (Espelho do PDF)")
@@ -590,16 +705,11 @@ def main():
         for chave_dim, titulo_dim_completo in DIMENSOES_TITULOS.items():
             with st.expander(f"{num_dim}. {titulo_dim_completo}"):
                 resposta = st.session_state.avaliacoes.get(chave_dim, {})
-                status = resposta.get('status', 'Não')
                 nota = resposta.get('nota', 0)
                 observacoes = resposta.get('observacoes', [])
                 comentario = resposta.get('comentario', '')
                 
-                col1, col2 = st.columns(2)
-                with col1:
-                    st.write(f"**Status:** {status}")
-                with col2:
-                    st.write(f"**Nota:** {nota:.1f}/{DIMENSOES[chave_dim]}")
+                st.write(f"**Nota:** {nota:.1f}/{DIMENSOES[chave_dim]}")
                 
                 if observacoes:
                     st.write("**Observações:**")
@@ -618,7 +728,7 @@ def main():
             num_dim += 1
         
         st.divider()
-        st.subheader("📝 Parecer Resumido (Automático)")
+        st.subheader("📝 Parecer Resumido (texto para ser inserido nos comentários da plataforma do PIM)")
         
         parecer_resumido = gerar_parecer_resumido({
             'avaliacoes': st.session_state.avaliacoes,
@@ -632,9 +742,8 @@ def main():
         if st.button("💾 Gerar PDF", type="primary", use_container_width=True):
             dados_pdf = {
                 'curso': curso,
-                'turma': turma,
+                'lider': lider,
                 'pim': pim,
-                'grupo': grupo,
                 'empresa': empresa,
                 'professor': professor,
                 'data_avaliacao': data_avaliacao.strftime("%d/%m/%Y"),
@@ -646,7 +755,7 @@ def main():
                 'justificativa_oral': st.session_state.justificativa_oral
             }
             
-            nome_arquivo = f"PIM_{turma}_{empresa.replace(' ', '_')}.pdf"
+            nome_arquivo = f"PIM_{pim}_{empresa.replace(' ', '_')}_{lider.replace(' ', '_')}.pdf"
             
             try:
                 # Criar PDF em memória
