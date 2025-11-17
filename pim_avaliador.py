@@ -10,6 +10,8 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.lib import colors
 from reportlab.pdfgen import canvas
+import json
+from datetime import datetime
 
 st.set_page_config(page_title="Avaliador PIM", layout="wide", initial_sidebar_state="expanded")
 
@@ -144,6 +146,53 @@ def calcular_notas(notas_tabela):
     nota_objetiva = sum(notas_tabela.values())
     nota_ponderada = nota_objetiva * 0.70
     return nota_objetiva, nota_ponderada
+
+def salvar_progresso():
+    """Exporta todo o progresso da avaliação em JSON"""
+    dados = {
+        'versao': '2.1',
+        'timestamp': datetime.now().isoformat(),
+        'curso': st.session_state.get('curso', ''),
+        'lider': st.session_state.get('lider', ''),
+        'pim': st.session_state.get('pim', ''),
+        'empresa': st.session_state.get('empresa', ''),
+        'professor': st.session_state.get('professor', ''),
+        'data_avaliacao': st.session_state.get('data_avaliacao', datetime.now()).isoformat(),
+        'avaliacoes': st.session_state.get('avaliacoes', {}),
+        'notas_tabela': st.session_state.get('notas_tabela', {}),
+        'recomendacoes_selecionadas': st.session_state.get('recomendacoes_selecionadas', []),
+        'comentarios_adicionais': st.session_state.get('comentarios_adicionais', ''),
+        'parte_oral': st.session_state.get('parte_oral', 0.0),
+        'justificativa_oral': st.session_state.get('justificativa_oral', ''),
+        'tipo_discussao': st.session_state.get('tipo_discussao', 'Problema (PIM I ou II)')
+    }
+    return json.dumps(dados, indent=2, ensure_ascii=False)
+
+def carregar_progresso(json_data):
+    """Restaura progresso salvo do JSON"""
+    try:
+        dados = json.loads(json_data)
+        
+        st.session_state.curso = dados.get('curso', '')
+        st.session_state.lider = dados.get('lider', '')
+        st.session_state.pim = dados.get('pim', '')
+        st.session_state.empresa = dados.get('empresa', '')
+        st.session_state.professor = dados.get('professor', '')
+        
+        if 'data_avaliacao' in dados:
+            st.session_state.data_avaliacao = datetime.fromisoformat(dados['data_avaliacao'])
+        
+        st.session_state.avaliacoes = dados.get('avaliacoes', {})
+        st.session_state.notas_tabela = dados.get('notas_tabela', {})
+        st.session_state.recomendacoes_selecionadas = dados.get('recomendacoes_selecionadas', [])
+        st.session_state.comentarios_adicionais = dados.get('comentarios_adicionais', '')
+        st.session_state.parte_oral = dados.get('parte_oral', 0.0)
+        st.session_state.justificativa_oral = dados.get('justificativa_oral', '')
+        st.session_state.tipo_discussao = dados.get('tipo_discussao', 'Problema (PIM I ou II)')
+        
+        return True, "✅ Avaliação restaurada com sucesso!"
+    except Exception as e:
+        return False, f"❌ Erro ao carregar: {str(e)}"
 
 def gerar_parecer_resumido(dados):
     """
@@ -461,6 +510,49 @@ def main():
             import time
             time.sleep(1)
             st.rerun()
+        
+        st.divider()
+        
+        # ===== PROTEÇÃO DE DADOS =====
+        st.markdown("### 💾 Proteção de Dados")
+        st.caption("⚠️ O app pode reiniciar e apagar seus dados. Salve periodicamente!")
+        
+        # Botão de Salvar
+        if st.button("⬇️ Salvar Trabalho Atual", use_container_width=True, type="primary"):
+            json_backup = salvar_progresso()
+            lider = st.session_state.get('lider', 'SemNome').replace(' ', '_')
+            empresa = st.session_state.get('empresa', 'SemEmpresa').replace(' ', '_')
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M')
+            nome_arquivo = f"SATA_{empresa}_{lider}_{timestamp}.json"
+            
+            st.download_button(
+                label="📥 Clique aqui para baixar",
+                data=json_backup,
+                file_name=nome_arquivo,
+                mime="application/json",
+                use_container_width=True
+            )
+        
+        # Botão de Carregar
+        arquivo_backup = st.file_uploader(
+            "⬆️ Continuar Trabalho Salvo",
+            type=['json'],
+            help="Selecione um arquivo de backup anterior"
+        )
+        
+        if arquivo_backup is not None:
+            if st.button("🔄 Restaurar Dados", use_container_width=True):
+                conteudo = arquivo_backup.read().decode('utf-8')
+                sucesso, mensagem = carregar_progresso(conteudo)
+                
+                if sucesso:
+                    st.success(mensagem)
+                    st.balloons()
+                    import time
+                    time.sleep(1)
+                    st.rerun()
+                else:
+                    st.error(mensagem)
         
         st.divider()
     
